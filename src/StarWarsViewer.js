@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 class StarWarsViewer extends React.Component {
 
   render() {
-    console.log(this.props.people)
+    // console.log('people', this.props.people);
+    console.log('refs', this.refs[0]);
     return (
       <div>
         {this.props.people.length ? this.props.people.map((person, i) => (
-          <div key={i}>{person.name}</div>
+          <div key={i} ref={i}>{person.name}</div>
         )) : null}
       </div>
     )
