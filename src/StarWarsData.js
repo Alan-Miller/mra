@@ -1,22 +1,38 @@
 import React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import { setPeople } from './redux/reducer';
 import { connect } from 'react-redux';
 
 class StarWarsData extends React.Component {
 
   componentDidMount() {
-    axios.get('https://swapi.co/api/people')
-    .then(people => {
-      // console.log(people.data.results);
-      this.props.setPeople(people.data.results);
-    });
+    // AXIOS
+    // axios.get('https://swapi.co/api/people')
+    //   .then(people => {
+    //     // console.log(people.data.results);
+    //     this.props.setPeople(people.data.results); 
+    //   });
+
+    // XHR
+    // const xhr = new XMLHttpRequest();
+    // xhr.open('GET', 'https://swapi.co/api/people');
+    // xhr.onload = _ => { this.props.setPeople(JSON.parse(xhr.response).results); };
+    // xhr.send();
+    
+    // FETCH
+    fetch('https://swapi.co/api/people')
+      .then(people => people.json())
+      .then(people => this.props.setPeople(people.results));
   }
 
   render() {
     // console.log('HISTORY', this.props.history)
     return (
-      <div>DATA</div>
+      <div>
+        <p>This component gets SW data and puts it on Redux.</p>
+        <p>The Viewer component subscribes to the data on Redux and displays it.</p>
+      </div>
+
     )
   }
 }
@@ -26,7 +42,7 @@ class StarWarsData extends React.Component {
 // }
 
 // const mapDispatchToProps = {
-  // setPeople: setPeople
+// setPeople: setPeople
 // }
 
 export default connect(null, { setPeople: setPeople })(StarWarsData);

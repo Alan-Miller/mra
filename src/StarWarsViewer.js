@@ -1,12 +1,12 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 
 class StarWarsViewer extends React.Component {
 
   render() {
     // console.log('people', this.props.people);
-    console.log('refs', this.refs[0]);
+    // console.log('refs', this.refs[0]);
+    // console.log('props', this.props);
     return (
       <div>
         {this.props.people.length ? this.props.people.map((person, i) => (
